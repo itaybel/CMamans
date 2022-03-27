@@ -1,19 +1,12 @@
 
 
-void printWelcomeMessage();
-int getInput(char* input);
-void printInPrettyFormat(char* text, int length);
-int countAlphaNumericCharacters(char* letters, int length);
-int isAlphaNumeric(char letter);
-void printAlphaNumericSum(char* letters, int length);
-
-
+#include "functions.h"
 /*
 This function is used to welcome the user when they run the program
 
 */
 void printWelcomeMessage(){
-    printf("Hello!\nWelcome to question 1 of Maman12!\nPlease enter a text, and beware that you cant delete any charactars you have already written!\nIn order to finish the program use the key %c if you are running it directly, otherwise if the input is from a file, just run it.\n", END_KEY);
+    printf("Hello!\nWelcome to question 1 of Maman12!\nPlease enter a text, and press CTRL-D in linux or CTRL-Z in windows  when you finish writing!\n");
 }
 
 /*
@@ -23,23 +16,23 @@ The function does it by splitting the inputs into blocks, and each time the bloc
 @return how many letters has been given
 
 */
-int getInput(char* letters){
+int getInput(char** letters){
 
     int length = 0;
-    int currentBlockLength = 0;
-
-    while(*(letters + length - 1) != EOF && *(letters + length - 1) != END_KEY){
-        *(letters + length) = getch();
-
+    int currentBlockLength = 1;
+    char currChar;
+    while((currChar = getchar()) != '\n' && currChar != EOF){
+        *(*letters + length) = currChar;
         if(currentBlockLength >= MEMORY_BLOCK){
-            letters = (char*)realloc(letters, length + MEMORY_BLOCK * sizeof(char));
+            *letters = (char*)realloc(*letters, (length  + MEMORY_BLOCK) * sizeof(char));
             currentBlockLength= 0;
         }
-        
-        putchar(*(letters + length));
+
+        currentBlockLength++;
         length++;
     }
-    return length - 1;
+    
+    return length;
 
 }
 
@@ -91,15 +84,15 @@ This function is used to print the characters splited into lines
 */
 void printInPrettyFormat(char* text, int length){
     
-    char* curr = text;
+    int i = 0;
     int lettersInARow = 0;
     printf("\nThe input in a pretty format: \n");
-    for(; curr < text + length - 1; curr++){
-        if((lettersInARow >= LINE_LENGTH || *curr == '\n') && *curr == ' '){
+    for(i = 0; i < length; i++){
+        if(lettersInARow >= LINE_LENGTH && *(text + i) == ' '){
             printf("\n");
             lettersInARow = 0;
         }else{
-            printf("%c", *curr);
+            printf("%c", *(text + i));
             lettersInARow++;
         }
     }

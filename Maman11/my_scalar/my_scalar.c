@@ -5,7 +5,7 @@ This program is a part of Mamam11 in the course "Maabada Betihnut maarahot"
 
 */
 
-#include "functions.c"
+#include "functions.h"
 
 int main(){
 
@@ -19,7 +19,7 @@ int main(){
 
     insertToVectors(vector1, vector2, vectorLength);
    
-    printf("The scalar multipication is: %d\n", scalar_product(vector1, vector2, vectorLength));
+    printf("The scalar multipication of the two vectors is: %d\n", scalar_product(vector1, vector2, vectorLength));
     return 0;
 }
 

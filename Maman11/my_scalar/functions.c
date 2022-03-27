@@ -1,6 +1,4 @@
-#include <stdio.h>
-#define MAX_VECTOR_LENGTH 100
-
+#include "functions.h"
 /*
 This function is used to calculate the scalar multipication of two given vectors.
 @param vector1 the first vector 
