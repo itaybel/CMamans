@@ -89,3 +89,29 @@ void printInPrettyFormat(char* text, int length){
     }
 
 }
+
+
+void printInPrettyFormat(char* text, int length){
+    
+    int i = 0;
+    int lettersInARow = 0;
+    printf("\nThe input in a pretty format: \n");
+    for(i = 0; i < length; i++){
+
+        printf("%c", *(text + i));
+        if(*(text + i) == TAB){
+            lettersInARow += 8 - lettersInARow % 8;
+        }
+        
+        if(*(text +i) == ENTER){
+            lettersInARow = 0;
+        }
+
+        if(lettersInARow >= LINE_LENGTH){
+            printf("\n");
+            lettersInARow = 0;
+        }
+
+    }
+
+}

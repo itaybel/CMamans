@@ -5,7 +5,8 @@
 #define MEMORY_BLOCK 40
 #define LINE_LENGTH 25
 
-
+#define TAB '\t'
+#define ENTER '\n'
 void printWelcomeMessage();
 
 int getInput(char** input);
