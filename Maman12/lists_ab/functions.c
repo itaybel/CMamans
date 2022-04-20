@@ -21,7 +21,7 @@ int getInput(char** letters){
     int length = 0;
     int currentBlockLength = 1;
     char currChar;
-    while((currChar = getchar()) != '\n' && currChar != EOF){
+    while((currChar = getchar()) != EOF){
         *(*letters + length) = currChar;
         if(currentBlockLength >= MEMORY_BLOCK){
             *letters = (char*)realloc(*letters, (length  + MEMORY_BLOCK) * sizeof(char));
@@ -48,20 +48,14 @@ int countAlphaNumericCharacters(char* letters, int length){
     int i = 0;
     int counter = 0;
     for(i = 0; i < length; i++){
-        counter += isAlphaNumeric(*(letters + i)); 
+        if(isalnum(*(letters + i))){
+            counter++;
+        }
     }
     return counter;
 }
 
-/*
-This function is used to tell wheter a character is an alphanumeric character or not
-@param letter the character we are currently checking
 
-@return 1 if the character is alphanumeric, otherwise 0
-*/
-int isAlphaNumeric(char letter){
-    return (letter >= 'a' && letter <= 'z') || (letter >= 'A' && letter <= 'Z') || (letter >= '0' && letter <= '9');
-}
 
 /*
 This function is used to print the result to the user, at the end of the program
@@ -85,16 +79,13 @@ This function is used to print the characters splited into lines
 void printInPrettyFormat(char* text, int length){
     
     int i = 0;
-    int lettersInARow = 0;
     printf("\nThe input in a pretty format: \n");
     for(i = 0; i < length; i++){
-        if(lettersInARow >= LINE_LENGTH && *(text + i) == ' '){
+        if(i % LINE_LENGTH == 0){
             printf("\n");
-            lettersInARow = 0;
-        }else{
-            printf("%c", *(text + i));
-            lettersInARow++;
         }
+        printf("%c", *(text + i));
+        
     }
 
 }
