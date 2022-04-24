@@ -76,31 +76,18 @@ This function is used to print the characters splited into lines
 @return none
 
 */
-void printInPrettyFormat(char* text, int length){
-    
-    int i = 0;
-    printf("\nThe input in a pretty format: \n");
-    for(i = 0; i < length; i++){
-        if(i % LINE_LENGTH == 0){
-            printf("\n");
-        }
-        printf("%c", *(text + i));
-        
-    }
-
-}
 
 
 void printInPrettyFormat(char* text, int length){
     
     int i = 0;
     int lettersInARow = 0;
-    printf("\nThe input in a pretty format: \n");
+    printf("\nThe input in a pretty format is: \n");
     for(i = 0; i < length; i++){
 
         printf("%c", *(text + i));
         if(*(text + i) == TAB){
-            lettersInARow += 8 - lettersInARow % 8;
+            lettersInARow += (8 - lettersInARow % 8);
         }
         
         if(*(text +i) == ENTER){
@@ -111,6 +98,7 @@ void printInPrettyFormat(char* text, int length){
             printf("\n");
             lettersInARow = 0;
         }
+        lettersInARow++;
 
     }
 

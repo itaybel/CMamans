@@ -2,12 +2,13 @@ Hello!
 Welcome to question 1 of Maman12!
 Please enter a text, and press CTRL-D in linux or CTRL-Z in windows  when you finish writing!
 
-The input in a pretty format: 
+The input in a pretty format is: 
 So I hope this is going to
-work, and then I will start
-making the makefile :) , it
-was a cool practice to use
-the calloc and the realloc!
+ work, and then I will st
+art making the makefile :
+) , it was a cool practic
+e to use the malloc and t
+he realloc!
 Great!
 You have typed 137 characters in total!
 103 of them are alphanumeric characters!
