@@ -1,6 +1,10 @@
 
 #include "header.h"
 
+/*
+This function prints the menu to the user
+@return none
+*/
 void printMenu(){
     printf("Welcome to Maman22!\nIn this program you can manipulate and play with matrixes!\nHere are the commands:\n");
     printf("\n\tprint_mat MATRIX_NAME - prints the matrix into the screen");
@@ -53,12 +57,12 @@ int main(){
             running = 0;
         }
 
-        handle_command(command ,inputFromUser ,all_matrixes);
+        running = handle_command(command ,inputFromUser ,all_matrixes);
         
         free(command);
         free(inputFromUser);    
 
 }
-    freeMemory(command, inputFromUser, all_matrixes);
+    freeMatrixsMemory(all_matrixes);
     return 0;
 }

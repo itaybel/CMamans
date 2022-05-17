@@ -52,7 +52,7 @@ void handle_read_command(char* input, mat* matrixs[]){
         
     }
 
-    printf("The matrix know is: \n");
+    printf("The matrix now is: \n");
     print_matrix(*found_matrix);
 
 }
@@ -266,25 +266,34 @@ void handle_mul_scalar_command(char* input, mat* matrixs[]){
     print_matrix(*output_mat);
 }
 
+
+
 /*
 This function handles the input from the user.
 @param command: the command the user has written
 @param input: the input the user has written, without the command
 @param matrixs: an array of the matrix struct, which contains information about the matrixes
-@return none
+@return wether the program should be terminated or not
+0 - its should be termniated
+1 - its not should be terminated
 */
-void handle_command(char* command, char* input , mat* matrixs[]){    
+int handle_command(char* command, char* input , mat* matrixs[]){    
     char commands[COMMANDS_LENGTH][COMMAND_LENGTH_BLOCK] = {"read_mat", "print_mat", "add_mat", "sub_mat", "mul_mat","mul_scalar" ,"trans_mat"};
     void (*func_ptr[COMMANDS_LENGTH])() = {handle_read_command, handle_print_command, handle_add_command, handle_sub_command, handle_mul_command, handle_mul_scalar_command ,handle_trans_command};
     int i = 0;
     int found_cmd = 0;
 
-    if(strcmp("stop", command) == 0){
+    if(strcmp(command, "stop") == 0){
+        removeSpacesAndTabs(input);
+        if(input[0] != '\0'){
+            printf("Extra text after command\n");
+            return 1;
+        }
         printf("Bye bye!\n");
-        freeMemory(command, input, matrixs);
-        exit(0);
-    }
+        return 0;
+     }
 
+    
 
     for(i = 0 ; i < COMMANDS_LENGTH && !found_cmd; i++){
 
@@ -296,8 +305,8 @@ void handle_command(char* command, char* input , mat* matrixs[]){
 
     if(!found_cmd){
         printf("Undefined command name\n");
-        return;
     }
+    return 1;
 
 
      
@@ -419,16 +428,12 @@ int getNextNumber(char* input, double* pointer){
 }
 
 /*
-This function free all the memory stored in the heap
-@param command: the command that was used 
-@param command: the input that was used 
+This function frees all the matrixes memory
 @param matrixs: an array of the matrix struct, which contains information about the matrixes
 @return none
 */
-void freeMemory(char* command, char* input , mat* matrixs[]){
+void freeMatrixsMemory(mat* matrixs[]){
     int i = 0;
-    free(command);
-    free(input);
     for(i = 0; i < HOW_MANY_MATRIXES; i++){
         free(matrixs[i]);
     }

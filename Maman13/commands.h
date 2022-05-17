@@ -18,10 +18,10 @@ void handle_sub_command(char* input, mat* matrixs[]);
 void handle_mul_command(char* input, mat* matrixs[]);
 void handle_mul_scalar_command(char* input, mat* matrixs[]);
 void handle_trans_command(char* input, mat* matrixs[]);
-void handle_command(char* command, char* input , mat* matrixs[]);
+int handle_command(char* command, char* input , mat* matrixs[]);
 mat* getMat(char* input, mat** all_matrixs);
 int isCommasValid(char* input);
 int getNextNumber(char* input, double* pointer);
 int consestiveCommasFound(char* input);
-void freeMemory(char* command, char* input , mat* matrixs[]);
+void freeMatrixsMemory(mat* matrixs[]);
 #endif
