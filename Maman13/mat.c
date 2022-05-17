@@ -1,56 +1,74 @@
 #include "mat.h"
-#include <string.h>
 
-void make_matrix(mat* matrix){
+/*
+This function creates a matrix
+@param letter: the letter represents the matrix
+@return a pointer to the allocated memory
+*/
+mat* make_matrix(char letter){
 
-    int i  = 0;
-    matrix->data = (double**)calloc(MATRIX_SIZE, sizeof(double*));
-    for(i = 0; i < MATRIX_SIZE; i++){
-        (matrix->data)[i] = (double*)calloc(MATRIX_SIZE, sizeof(double));
-    }
-}
-
-void delete_matrix(mat matrix){
-    int i  = 0;
-    for(i = 0; i < MATRIX_SIZE; i++){
-        free((matrix.data)[i]);
-    }
-    free(matrix.data);
+    return (mat*)calloc(1, sizeof(mat));
 }
 
 
+
+/*
+This function prints a matrix
+@param matrix: the matrix to be printed
+@return none
+*/
 void print_matrix(mat matrix){
-    printf("here");
     int i = 0;
     int j = 0;
     for(i = 0; i < MATRIX_SIZE; i++){
         for(j = 0; j < MATRIX_SIZE; j++){
-            printf("%f\t", matrix.data[i][j]);
+            printf("%f\t", matrix.array[i][j]);
         }
         printf("\n");
     }
 }
+/*
+This function adds 2 matrixes and stores the results in a third matrix.
+@param matrixA: the first matrix to be added
+@param matrixB: the second matrix to be added
+@param matrixc: the matrix to be changed
 
+@return none
+*/
 void add_matrix(mat matrixA, mat matrixB, mat* matrixC){
     int i = 0;
     int j = 0;
     for(i = 0; i < MATRIX_SIZE; i++){
         for(j = 0; j < MATRIX_SIZE; j++){
-            (matrixC->data)[i][j] = (matrixA.data)[i][j] + (matrixB.data)[i][j];
+            (matrixC->array)[i][j] = (matrixA.array)[i][j] + (matrixB.array)[i][j];
         }
     }
 }
+/*
+This function substracts 2 matrixes and stores the results in a third matrix.
+@param matrixA: the first matrix to be added
+@param matrixB: the second matrix to be added
+@param matrixc: the matrix to be changed
 
+@return none
+*/
 void substract_matrix(mat matrixA, mat matrixB, mat* matrixC){
     int i = 0;
     int j = 0;
     for(i = 0; i < MATRIX_SIZE; i++){
         for(j = 0; j < MATRIX_SIZE; j++){
-            (matrixC->data)[i][j] = (matrixA.data)[i][j] - (matrixB.data)[i][j];
+            (matrixC->array)[i][j] = (matrixA.array)[i][j] - (matrixB.array)[i][j];
         }
     }
 }
+/*
+This function multiplies 2 matrixes and stores the results in a third matrix.
+@param matrixA: the first matrix to be added
+@param matrixB: the second matrix to be added
+@param matrixc: the matrix to be changed
 
+@return none
+*/
 void multiply_matrix(mat matrixA, mat matrixB, mat* matrixC){
     int i = 0;
     int j = 0;
@@ -59,30 +77,43 @@ void multiply_matrix(mat matrixA, mat matrixB, mat* matrixC){
     for(i = 0; i < MATRIX_SIZE; i++){
         for(j = 0; j < MATRIX_SIZE; j++){
             sum = 0;
-            for(k = 1; k < MATRIX_SIZE; k++){
-                sum += (matrixA.data)[i][k] * (matrixB.data)[k][j];
+            for(k = 0; k < MATRIX_SIZE; k++){
+                sum += (matrixA.array)[i][k] * (matrixB.array)[k][j];
             } 
-            (matrixC->data)[i][j] = sum;
+            (matrixC->array)[i][j] = sum;
         }
     }
 }
+/*
+This function adds multiplies a matrix by a scalar and stores the result in a third matrix
+@param matrixA: the first matrix to be added
+@param matrixB: the matrix to be changed
+@param scalar: to scalar to be multiplied
 
+@return none
+*/
 void multiply_matrix_scalar(mat matrixA, mat* matrixB, double scalar){
     int i = 0;
     int j = 0;
     for(i = 0; i < MATRIX_SIZE; i++){
         for(j = 0; j < MATRIX_SIZE; j++){
-            (matrixB->data)[i][j] = (matrixA.data)[i][j] * scalar;
+            (matrixB->array)[i][j] = (matrixA.array)[i][j] * scalar;
         }
     }
 }
+/*
+This function adds transposes a matrix and stores the result in another matrix
+@param matrixA: the matrix to be transposed
+@param matrixB: the matrix to be changed
 
+@return none
+*/
 void matrix_transposition(mat matrixA, mat* matrixB){
     int i = 0;
     int j = 0;
     for(i = 0; i < MATRIX_SIZE; i++){
         for(j = 0; j < MATRIX_SIZE; j++){
-            (matrixB->data)[i][j] = (matrixA.data)[j][i];
+            (matrixB->array)[i][j] = (matrixA.array)[j][i];
         }
     }
 }
@@ -90,174 +121,11 @@ void matrix_transposition(mat matrixA, mat* matrixB){
 
 
 
-    
-
-int is_paramater_number(char* parameter){
-    int flag = 1;
-    int i = 0;
-    for(i = 0; *(parameter + i) != '\0'; i++){
-        if('9' < *(parameter + i) || *(parameter + i) < '0') flag = 0;
-    }
-    return flag;
-}
-
-mat* get_matrix_by_string(char* name, mat** all_matrixs){
-    char all_matrix_names[HOW_MANY_MATRIXES][MATRIX_NAME_LENGTH + 1] = {"MAT_A", "MAT_B", "MAT_C", "MAT_D", "MAT_E", "MAT_F"};
-    int i = 0;
-    mat* found_matrix = NULL;
-    int found_flag = 0;
-    for(i = 0 ; i < HOW_MANY_MATRIXES; i++){
-
-        if(strcmp(name, all_matrix_names[i]) == 0){
-            found_matrix = (all_matrixs[i]);
-            found_flag = 1;
-        }
-    }
-    if(!found_flag){
-        printf("Undefined matrix name");
-        return NULL;
-    }
-    return found_matrix;
-}
-
-void handle_read_command(char** parameters, int parameters_length, mat* matrixs[]){
-    int i = 0;
-    mat* found_matrix = get_matrix_by_string(parameters[0], matrixs);
-    if(found_matrix == NULL) return;
-
-    for(i = 1; i < parameters_length; i++){
-        if(!is_paramater_number(parameters[i])){
-            printf("Argument is not a real number");
-            return;
-        }
-        
-        found_matrix->data[(i - 1) / MATRIX_SIZE][(i - 1) % MATRIX_SIZE] = atof(parameters[i]);
-        
-    }
-
-}
-void handle_print_command(char** parameters, int parameters_length, mat* matrixs[]){
-    mat* found_matrix = get_matrix_by_string(parameters[0], matrixs);
-    if(found_matrix == NULL) return;
-    print_matrix(*found_matrix);
-
-}
-void handle_add_command(char** input, mat* matrixs[]){
-    return;
-}
-void handle_sub_command(char** input, mat* matrixs[]){
-    return;
-}
-void handle_mul_command(char** input, mat* matrixs[]){
-    return;
-}
-void handle_trans_command(char** input, mat* matrixs[]){
-    return;
-}
-void handle_stop_command(char** input, mat* matrixs[]){
-    return;
-}
-
-void use_input(char* command, char** arguments, int arguemnts_length, mat* matrixs[]){
-    
-    char commands[COMMANDS_LENGTH][COMMAND_LENGTH_BLOCK] = {"read_mat", "print_mat", "add_mat", "sub_mat", "mul_mat", "trans_mat", "stop"};
-    void (*func_ptr[COMMANDS_LENGTH])() = {handle_read_command, handle_print_command, handle_add_command, handle_sub_command, handle_mul_command, handle_trans_command, handle_stop_command};
-    int i = 0;
-    int found_cmd = 0;
-
-
-    for(i = 0 ; i < COMMANDS_LENGTH && !found_cmd; i++){
-        if(strcmp(commands[i], command) == 0){
-            (*func_ptr[i])(arguments, matrixs, arguemnts_length);
-            found_cmd = 1;
-        }
-    }
-
-    if(!found_cmd){
-        printf("Undefined command name");
-    }
-    
-}
-void getInput(char** buffer){
-
-    int length = 0;
-    int currentBlockLength = 1;
-    char currChar;
-    while((currChar = getchar()) != EOF){
-        *(*buffer + length) = currChar;
-        if(currentBlockLength >= MEMORY_BLOCK){
-            *buffer = (char*)realloc(*buffer, (length  + MEMORY_BLOCK) * sizeof(char));
-            currentBlockLength= 0;
-        }
-
-        currentBlockLength++;
-        length++;
-    }
-    
-
-}
 
 
 
-char* getCommand(char* input){
-    char* command = (char*)calloc(MEMORY_BLOCK, sizeof(char));
-    int i = 0;
-    char currChar;
-    for(i = 0; (currChar = *(input + i)) != SPACE && currChar != TAB && i < strlen(input) ; i++){
-        if(i % MEMORY_BLOCK == 0){
-            command = (char*)realloc(command, sizeof(char) * (i + MEMORY_BLOCK));
-        }
-        *(command + i) = currChar;
-    }
-    return command;
-}
 
 
-char* removeSpacesAndTabs(char* input, char* command){
-    int i = 0;
 
-    char* clear_input = (char*)malloc(sizeof(char) * MEMORY_BLOCK);
-    int length = 0;
-    char currChar;
-    for(i = strlen(command); i < strlen(input); i++){
-        currChar = input[i];
-        if(currChar == SPACE || currChar == TAB) continue;
-        clear_input[length] = currChar;
-        length++;
-        if(length % MEMORY_BLOCK == 0){
-            clear_input = (char*)realloc(clear_input, (length  + MEMORY_BLOCK) * sizeof(char));
-        }
-    }
-    
-    return clear_input;
 
-}
 
-int countCommas(char* input){
-    int counter = 0;
-    int i = 0;
-    for(i = 0; i < strlen(input); i++){
-        if(input[i] == COMMA) counter++;
-    }
-    return counter;
-}
-
-char** seperateToArguments(char* input){
-
-    char** arguments;
-    const char devider[2] = ",";
-    char* token;
-    int i = 0;
-    if(countCommas(input) == 0) return NULL;
-
-    token =  strtok(input, devider);
-    arguments = (char**)malloc(sizeof(char*) * (countCommas(input) + 1));
-
-    while(token != NULL){
-        arguments[i] = token;
-        token = strtok(NULL, devider);
-        i++;
-    }
-    
-    return arguments;
-}
