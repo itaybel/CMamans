@@ -11,7 +11,7 @@ char* getInput(){
     int length = 0;
     int currentBlockLength = 1;
     char currChar;
-    while((currChar = getchar()) != '\n'){
+    while((currChar = getchar()) != '\n' && currChar != EOF){
         *(buffer + length) = currChar;
         if(currentBlockLength >= MEMORY_BLOCK){
             buffer = (char*)realloc(buffer, (length  + MEMORY_BLOCK) * sizeof(char));

@@ -44,6 +44,10 @@ int main(){
         printf("\n> ");
 
         inputFromUser = getInput();
+        if(strlen(inputFromUser) == 0){
+            free(inputFromUser);
+            break;   
+        }
         printf("You have entered: %s\n", inputFromUser);
 
 
@@ -53,9 +57,6 @@ int main(){
         removeSpacesAndTabs(inputFromUser);
 
         if(inputFromUser[0] == '\n') continue;
-        if(foundEOF(inputFromUser)){
-            running = 0;
-        }
 
         running = handle_command(command ,inputFromUser ,all_matrixes);
         
@@ -63,6 +64,7 @@ int main(){
         free(inputFromUser);    
 
 }
-    freeMatrixsMemory(all_matrixes);
+    printf("Bye!\nI hope you liked my program :)\n");
+   freeMatrixsMemory(all_matrixes);
     return 0;
 }

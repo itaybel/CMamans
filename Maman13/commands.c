@@ -27,7 +27,7 @@ void handle_read_command(char* input, mat* matrixs[]){
             }
             break;
         }
-        
+        printf("in is: %s\n", input);
         if(!isCommasValid(input)){
            
             return;
@@ -340,7 +340,13 @@ This function checks wether the commas at the beginning of a string are valid, a
 int isCommasValid(char* input){
     
     int res = consestiveCommasFound(input);
-    if(res == 1) return 1;
+    if(res == 1) {
+        if(strlen(input) == 1){ /* if its only a comma, it means the input ends with one*/
+            printf("Extraneous text after end of command");
+            return 0;
+        }
+        return 1;
+    };
     if(res == 0){
         printf("Missing comma\n");
     }else{
