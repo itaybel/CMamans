@@ -27,7 +27,6 @@ void handle_read_command(char* input, mat* matrixs[]){
             }
             break;
         }
-        printf("in is: %s\n", input);
         if(!isCommasValid(input)){
            
             return;
@@ -241,7 +240,7 @@ void handle_mul_scalar_command(char* input, mat* matrixs[]){
 
     res = getNextNumber(input, &scalar);
     if(res == -1){
-        printf("Argument is not a real number!\n");
+        printf("scalar is not a real number!\n");
         return;
     }if(res== -2){
         printf("Found more than one decimal point in one arugment\n");
@@ -370,6 +369,10 @@ mat* getMat(char* input, mat** all_matrixs){
     int i = 0;
     mat* found_matrix = NULL;
     int found_flag = 0;
+    if(input[0] == ','){
+        printf("Multiple consecutive commas\n");
+        return NULL;
+    }
     for(i = 0; i < 5 && input[i] != '\0'; i++){
         foundMatName[i] = input[i];
     }

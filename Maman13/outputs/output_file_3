@@ -1,0 +1,58 @@
+Welcome to Maman22!
+In this program you can manipulate and play with matrixes!
+Here are the commands:
+
+	print_mat MATRIX_NAME - prints the matrix into the screen
+
+	read_mat MATRIX_NAME, arg1, arg2 ... - feels the given matrix with the given arguments.
+
+	add_mat MATRIX1_NAME MATRIX2_NAME MATRIX3_NAME - adds MATRIX1 and MATRIX2 and stores the result in MATRIX3
+
+	sub_mat MATRIX1_NAME MATRIX2_NAME MATRIX3_NAME - substracts MATRIX1 and MATRIX2 and stores the result in MATRIX3
+
+	mul_mat MATRIX1_NAME MATRIX2_NAME MATRIX3_NAME - muliplies MATRIX1 and MATRIX2 and stores the result in MATRIX3
+
+	mul_scalar MATRIX1_NAME SCALAR MATRIX2_NAME - muliplies MATRIX1 by the SCALAR,  and stores the result in MATRIX2
+
+	trans_mat MATRIX1_NAME MATRIX2_NAME - transposes MATRIX1 and stores the result in MATRIX2
+
+
+The matrix names are: MAT_A, MAT_B, MAT_C, MAT_D, MAT_E, MAT_F
+> You have entered: read_mat mat_a, 3.2, -5.3
+ mat_a - Undefined matrix name
+
+> You have entered: read_mat MAT_A, 3.2, -5.3
+The matrix now is: 
+3.200000	-5.300000	0.000000	0.000000	
+0.000000	0.000000	0.000000	0.000000	
+0.000000	0.000000	0.000000	0.000000	
+0.000000	0.000000	0.000000	0.000000	
+
+> You have entered: print_mat MAT_B
+0.000000	0.000000	0.000000	0.000000	
+0.000000	0.000000	0.000000	0.000000	
+0.000000	0.000000	0.000000	0.000000	
+0.000000	0.000000	0.000000	0.000000	
+
+> You have entered: mul_mat MAT_A, MAT_A, MAT_A
+Successfully multiplied the 2 matrixes!
+The result matrix is: 
+10.240000	-16.960000	0.000000	0.000000	
+0.000000	0.000000	0.000000	0.000000	
+0.000000	0.000000	0.000000	0.000000	
+0.000000	0.000000	0.000000	0.000000	
+
+> You have entered: print_mat MAT_A
+10.240000	-16.960000	0.000000	0.000000	
+0.000000	0.000000	0.000000	0.000000	
+0.000000	0.000000	0.000000	0.000000	
+0.000000	0.000000	0.000000	0.000000	
+
+> You have entered: print_mat MAT_U
+ MAT_U - Undefined matrix name
+
+> You have entered: stop xxx
+Extra text after command
+
+> Bye!
+I hope you liked my program :)

@@ -23,7 +23,7 @@ char* getInput(){
     }
 
     buffer[length] = '\0';
-
+    
     return buffer;
    
 }

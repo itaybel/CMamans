@@ -1,0 +1,50 @@
+Welcome to Maman22!
+In this program you can manipulate and play with matrixes!
+Here are the commands:
+
+	print_mat MATRIX_NAME - prints the matrix into the screen
+
+	read_mat MATRIX_NAME, arg1, arg2 ... - feels the given matrix with the given arguments.
+
+	add_mat MATRIX1_NAME MATRIX2_NAME MATRIX3_NAME - adds MATRIX1 and MATRIX2 and stores the result in MATRIX3
+
+	sub_mat MATRIX1_NAME MATRIX2_NAME MATRIX3_NAME - substracts MATRIX1 and MATRIX2 and stores the result in MATRIX3
+
+	mul_mat MATRIX1_NAME MATRIX2_NAME MATRIX3_NAME - muliplies MATRIX1 and MATRIX2 and stores the result in MATRIX3
+
+	mul_scalar MATRIX1_NAME SCALAR MATRIX2_NAME - muliplies MATRIX1 by the SCALAR,  and stores the result in MATRIX2
+
+	trans_mat MATRIX1_NAME MATRIX2_NAME - transposes MATRIX1 and stores the result in MATRIX2
+
+
+The matrix names are: MAT_A, MAT_B, MAT_C, MAT_D, MAT_E, MAT_F
+> You have entered: read_mat MAT_A, 5, 3.13, -33, +32.3, 41
+The matrix now is: 
+5.000000	3.130000	-33.000000	32.300000	
+41.000000	0.000000	0.000000	0.000000	
+0.000000	0.000000	0.000000	0.000000	
+0.000000	0.000000	0.000000	0.000000	
+
+> You have entered: read_mat MAT_C, 2, 3.2, -48, 4.2, -3
+The matrix now is: 
+2.000000	3.200000	-48.000000	4.200000	
+-3.000000	0.000000	0.000000	0.000000	
+0.000000	0.000000	0.000000	0.000000	
+0.000000	0.000000	0.000000	0.000000	
+
+> You have entered: add_mat MAT_A, MAT_C, MAT_B
+Successfully added the 2 matrixes!
+The result matrix is: 
+7.000000	6.330000	-81.000000	36.500000	
+38.000000	0.000000	0.000000	0.000000	
+0.000000	0.000000	0.000000	0.000000	
+0.000000	0.000000	0.000000	0.000000	
+
+> You have entered: print_mat MAT_B
+7.000000	6.330000	-81.000000	36.500000	
+38.000000	0.000000	0.000000	0.000000	
+0.000000	0.000000	0.000000	0.000000	
+0.000000	0.000000	0.000000	0.000000	
+
+> Bye!
+I hope you liked my program :)
