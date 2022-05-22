@@ -9,15 +9,17 @@ This function handles the read command.
 void handle_read_command(char* input, mat* matrixs[]){
     mat* found_matrix;
     double currArgumentDouble;
-    int i = 1;
+    int i = 0;
+    int j = 0;
     int res;
+    double argumentsToInsert[MATRIX_SIZE * MATRIX_SIZE] = {0};
     removeSpacesAndTabs(input);
     found_matrix = getMat(input, matrixs);
 
     if(found_matrix == NULL) return;
 
 
-    for(i = 0; i < 16; i++){
+    for(i = 0; i < MATRIX_SIZE * MATRIX_SIZE; i++){
 
         res = consestiveCommasFound(input);
         if(res == 0){
@@ -45,10 +47,13 @@ void handle_read_command(char* input, mat* matrixs[]){
             printf("Found more than one decimal point in one arugment\n");
             return;
         }else{
-            found_matrix->array[i / MATRIX_SIZE][i  % MATRIX_SIZE] =  currArgumentDouble;
+            argumentsToInsert[i] =  currArgumentDouble;
         }
-       
-        
+    }
+
+   
+    for(j = 0; j < i; j++){
+        found_matrix->array[j / MATRIX_SIZE][j  % MATRIX_SIZE] = argumentsToInsert[j];
     }
 
     printf("The matrix now is: \n");
@@ -288,7 +293,6 @@ int handle_command(char* command, char* input , mat* matrixs[]){
             printf("Extra text after command\n");
             return 1;
         }
-        printf("Bye bye!\n");
         return 0;
      }
 

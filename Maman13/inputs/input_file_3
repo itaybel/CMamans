@@ -5,7 +5,5 @@ mul_mat MAT_A, MAT_A, MAT_A
 print_mat MAT_A
 print_mat MAT_U
 stop xxx
-
-
-
 add_mat MAT_A, MAT_B, MAT_B
+stop

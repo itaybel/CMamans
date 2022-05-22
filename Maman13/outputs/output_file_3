@@ -54,5 +54,14 @@ The result matrix is:
 > You have entered: stop xxx
 Extra text after command
 
-> Bye!
+> You have entered: add_mat MAT_A, MAT_B, MAT_B
+Successfully added the 2 matrixes!
+The result matrix is: 
+10.240000	-16.960000	0.000000	0.000000	
+0.000000	0.000000	0.000000	0.000000	
+0.000000	0.000000	0.000000	0.000000	
+0.000000	0.000000	0.000000	0.000000	
+
+> You have entered: stop
+Bye!
 I hope you liked my program :)
