@@ -6,4 +6,4 @@ my_and.o: my_and.c
 	gcc -c -ansi -Wall -pedantic my_and.c -o my_and.o
 
 clean:
-	rm -f my_and.o my_and
+	rm -f my_and.o

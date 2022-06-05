@@ -8,4 +8,4 @@ lists_c.o: lists_c.c
 linked_list.o: linked_list.c linked_list.h
 	gcc -c -ansi -Wall -pedantic linked_list.c -o linked_list.o
 clean:
-	rm -f $(OBJS) lists_c
+	rm -f $(OBJS) 

@@ -32,7 +32,6 @@ int validArguments(int argc, char** argv){
     /* If it couldnt open the file*/
     if(file == NULL){
         printf("Cant open the file!\n");
-        fclose(file);
         return 0;
     }
     fclose(file);
